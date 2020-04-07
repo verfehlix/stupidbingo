@@ -6,12 +6,12 @@ const NUMBER_MIN = 1
 const NUMBER_MAX = 75
 const NUMBERS_IN_GRID = 25
 
+const generateRandomNumber = (): number => {
+    return Math.floor(Math.random() * NUMBER_MAX) + NUMBER_MIN
+}
+
 const CardCreator: React.FC = () => {
     const [numbers, setNumbers] = useState<number[]>([])
-
-    const generateRandomNumber = (): number => {
-        return Math.floor(Math.random() * NUMBER_MAX) + NUMBER_MIN
-    }
 
     useEffect(() => {
         const newNumbers: number[] = []
@@ -26,7 +26,7 @@ const CardCreator: React.FC = () => {
             newNumbers.push(randomNumber)
         }
 
-        newNumbers[12] = 1336
+        newNumbers[12] = 1337
 
         setNumbers(newNumbers)
     }, [])
@@ -43,11 +43,14 @@ const CardCreator: React.FC = () => {
         >
             <h1>Bingo Card Creator!</h1>
 
+            <em>Jetzt auch ohne Bugs (hoffentlich)!</em>
+
             <div
                 style={{
                     display: 'flex',
                     flexWrap: 'wrap',
                     justifyContent: 'center',
+                    marginTop: '2rem',
                     marginBottom: '2rem',
                 }}
             >
@@ -65,7 +68,7 @@ const CardCreator: React.FC = () => {
                         return (
                             <Number
                                 key={number + 1}
-                                number={number + 1}
+                                number={number}
                                 numberState={false}
                             />
                         )
