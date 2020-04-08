@@ -6,10 +6,22 @@ import laxLogo from './lax.png'
 interface NumberProps {
     number: number
     numberState: boolean
+    isClickable?: boolean
+    onClick?: () => void
 }
 
-const Number: React.FC<NumberProps> = ({ number, numberState }) => (
+const Number: React.FC<NumberProps> = ({
+    number,
+    numberState,
+    isClickable = false,
+    onClick,
+}) => (
     <div
+        onClick={(): void => {
+            if (isClickable && onClick) {
+                onClick()
+            }
+        }}
         style={
             numberState
                 ? {

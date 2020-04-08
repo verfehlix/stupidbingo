@@ -26,6 +26,13 @@ const StupidBingo: React.FC = () => {
         setLatestNumber(flipIndex + 1)
     }
 
+    const numberClicked = (clickedIndex: number): void => {
+        const newNumberStates = [...numberStates]
+        newNumberStates[clickedIndex] = !newNumberStates[clickedIndex]
+        setNumberStates(newNumberStates)
+        setLatestNumber(clickedIndex + 1)
+    }
+
     return (
         <div>
             <div style={{ textAlign: 'center' }}>
@@ -46,6 +53,10 @@ const StupidBingo: React.FC = () => {
                                 <Number
                                     number={index + 1}
                                     numberState={numberState}
+                                    isClickable
+                                    onClick={(): void => {
+                                        numberClicked(index)
+                                    }}
                                 />
                                 <div
                                     style={{ flexBasis: '100%', height: '0' }}
@@ -58,6 +69,10 @@ const StupidBingo: React.FC = () => {
                                 key={index}
                                 number={index + 1}
                                 numberState={numberState}
+                                isClickable
+                                onClick={(): void => {
+                                    numberClicked(index)
+                                }}
                             />
                         )
                     }
@@ -71,6 +86,15 @@ const StupidBingo: React.FC = () => {
                 }}
             >
                 <button onClick={addNumberButtonClicked}>Neue Zahl!</button>
+            </div>
+            <div
+                style={{
+                    marginTop: '2rem',
+                    display: 'flex',
+                    justifyContent: 'center',
+                }}
+            >
+                <em>Zahlen können jetzt auch manuell angeklickt werden!</em>
             </div>
         </div>
     )
